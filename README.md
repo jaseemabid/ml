@@ -1,4 +1,4 @@
 # Learn ML
 
-    $ pipenv run jupyter notebook
+    $ poetry run jupyter notebook
 
