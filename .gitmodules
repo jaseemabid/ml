@@ -1,6 +1,6 @@
 [submodule "micrograd"]
 	path = micrograd
-	url = https://github.com/karpathy/micrograd
+	url = https://github.com/jaseemabid/micrograd
 [submodule "makemore"]
 	path = makemore
 	url = https://github.com/karpathy/makemore
