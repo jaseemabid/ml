@@ -4,17 +4,20 @@ name = "ml"
 description = "ML Experiments"
 
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12" # Tensorflow needs v3.12
 version = "0.1.0"
 
 dependencies = [
+  "bertopic>=0.16.4",
   "calplot>=0.1.7.5",
+  "chromadb>=0.6.3",
   "graphviz==0.20.1",
   "ipdb==0.13.13",
   "jupyter==1.0.0",
   "matplotlib==3.8.3",
   "nltk==3.8.1",
   "numpy==1.26.4",
+  "ollama>=0.4.7",
   "pandas==2.2.2",
   "pytest==8.0.1",
   "scikit-learn==1.4",
@@ -24,4 +27,9 @@ dependencies = [
   "tiktoken==0.7.0",
   "torch==2.2.0",
   "transformers[sentencepiece]==4.41.2",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.5",
 ]
