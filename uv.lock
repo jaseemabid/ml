@@ -159,6 +159,17 @@ css = [
 ]
 
 [[package]]
+name = "calplot"
+version = "0.1.7.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "matplotlib" },
+    { name = "numpy" },
+    { name = "pandas" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/85/f1/ce2770863c146ba22470ec37aa7e9dce07a7fdfe4c796171e926a972baf4/calplot-0.1.7.5.tar.gz", hash = "sha256:3c1781bd1ded9ef23fa58d512c7e2a3e3c2e4e81da96d870b9223004aaa6fcfa", size = 132267 }
+
+[[package]]
 name = "certifi"
 version = "2025.1.31"
 source = { registry = "https://pypi.org/simple" }
@@ -1163,6 +1174,7 @@ name = "ml"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "calplot" },
     { name = "graphviz" },
     { name = "ipdb" },
     { name = "jupyter" },
@@ -1182,6 +1194,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "calplot", specifier = ">=0.1.7.5" },
     { name = "graphviz", specifier = "==0.20.1" },
     { name = "ipdb", specifier = "==0.13.13" },
     { name = "jupyter", specifier = "==1.0.0" },

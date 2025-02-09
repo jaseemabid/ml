@@ -8,6 +8,7 @@ requires-python = ">=3.12"
 version = "0.1.0"
 
 dependencies = [
+  "calplot>=0.1.7.5",
   "graphviz==0.20.1",
   "ipdb==0.13.13",
   "jupyter==1.0.0",
