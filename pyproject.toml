@@ -1,29 +1,26 @@
-[tool.poetry]
+[project]
 name = "ml"
-version = "0.1.0"
-description = ""
-authors = ["Jaseem Abid <me@jabid.in>"]
+
+description = "ML Experiments"
+
 readme = "README.md"
+requires-python = ">=3.12"
+version = "0.1.0"
 
-[tool.poetry.dependencies]
-black = {extras = ["jupyter"], version = "^24.4.2"}
-graphviz = "^0.20.1"
-ipdb = "^0.13.13"
-jupyter = "^1.0.0"
-matplotlib = "^3.8.3"
-nltk = "^3.8.1"
-numpy = "^1.26.4"
-pandas = "^2.2.2"
-pytest = "^8.0.1"
-python = "^3.12"
-scikit-learn = "^1.4.2"
-sentence-transformers = "2.7.0"
-tensorflow = "^2.16.1"
-tf-keras = "^2.16.0"
-torch = "^2.2.0"
-transformers = {extras = ["sentencepiece"], version = "^4.41.2"}
-tiktoken = "^0.7.0"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+dependencies = [
+  "graphviz==0.20.1",
+  "ipdb==0.13.13",
+  "jupyter==1.0.0",
+  "matplotlib==3.8.3",
+  "nltk==3.8.1",
+  "numpy==1.26.4",
+  "pandas==2.2.2",
+  "pytest==8.0.1",
+  "scikit-learn==1.4",
+  "sentence-transformers>=3.4.1",
+  "tensorflow==2.16.1",
+  "tf-keras==2.16.0",
+  "tiktoken==0.7.0",
+  "torch==2.2.0",
+  "transformers[sentencepiece]==4.41.2",
+]

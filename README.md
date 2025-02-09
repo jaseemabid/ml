@@ -1,4 +1,4 @@
 # Learn ML
 
-    $ poetry run jupyter notebook
+    $ uv run jupyter notebook
 
