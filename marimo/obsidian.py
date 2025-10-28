@@ -22,28 +22,25 @@ def _():
 def _(os, pipeline):
     # Sentiment Analysis
     #
-    # Model:   https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english
-    # Dataset: https://huggingface.co/datasets/stanfordnlp/sst2
+    # Model:   https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest
+    # Dataset: TweetEval (based on ~124M tweets from 2018-2021)
     #
-    # - ⚠️ The data is very different from my notes, so the classifier seems heavily
-    #      biased towards negative label.
+    # This model outputs 3 classes (negative, neutral, positive) and is trained on
+    # diverse conversational text, making it better suited for personal notes than
+    # models trained only on movie reviews.
 
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-    model = "distilbert/distilbert-base-uncased-finetuned-sst-2-english"
-    revision = "af0f99b"  # Newer version 714eb0f
-    classifier = pipeline("sentiment-analysis", model=model, revision=revision)
+    model = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+    classifier = pipeline("sentiment-analysis", model=model)
     return (classifier,)
 
 
 @app.cell
 def _(classifier):
-    # This should have been a neutral example, but is negative with high
-    # confidence from this model. My notes have a lot of similar explainers, which
-    # all end up 🟥.
-
+    # Example classification
     example = "I like RC"
-    classifier(example)  # [{'label': 'POSITIVE', 'score': 0.9995481371879578}]
+    classifier(example)
     return
 
 
@@ -117,15 +114,22 @@ def _(classifier, pd):
         sentiment = classifier(line)
         label = sentiment[0]["label"]
         score = sentiment[0]["score"]
-        return score if label == "POSITIVE" else -score
+
+        # CardiffNLP model outputs: negative, neutral, positive
+        if label.lower() == "positive":
+            return score
+        elif label.lower() == "negative":
+            return -score
+        else:  # neutral
+            return 0
 
 
     def sentiment(r):
         emotions = [line_sentiment(line[0:512]) for line in r.contents.split("\n")]
         emotions = pd.Series(emotions)
-        happy = emotions[emotions > 0]
-        sad = emotions[emotions < 0]
-        return happy.prod() if happy.size > sad.size else sad.prod()
+
+        # Calculate average sentiment (handles neutral better than prod)
+        return emotions.mean()
     return (sentiment,)
 
 
